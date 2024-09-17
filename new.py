@@ -8,10 +8,10 @@ load_dotenv()
 
 # Set up the configuration for the Generative Model
 generation_config = {
-    "temperature": 0.4,
+    "temperature": 0.2,
     "top_p": 1,
     "top_k": 32,
-    "max_output_tokens": 4096,
+    "max_output_tokens": 8192
 }
 
 # Define safety settings for content generation
@@ -27,7 +27,7 @@ genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 def get_gemini_response(input_text):
     # Create a GenerativeModel instance with 'gemini-1.5-pro' as the model type
     llm = genai.GenerativeModel(
-        model_name="gemini-1.5-pro",
+        model_name="gemini-1.5-flash-latest",
         generation_config=generation_config,
         safety_settings=safety_settings,
     )
@@ -65,3 +65,5 @@ if prompt := st.chat_input("Message Gemini"):
     
     with st.chat_message("assistant"):
         st.markdown(response)
+
+
